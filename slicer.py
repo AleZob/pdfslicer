@@ -68,9 +68,39 @@ def zathura_out_parse(stdin_zathura):
         else:
             proccessed_data.append(page)
     proccessed_data.sort()
-    out_string = ",".join([str(page) for page in proccessed_data])
+    proccessed_data = compress_pages(proccessed_data)
+    out_string = ",".join(proccessed_data)
     # out_string = proccessed_data.join("")
     return out_string
+
+
+# 1,2,3,5,6,10 -> "1-3","5-6","10"
+def compress_pages(pages: list[int]) -> list[str]:
+    print(pages)
+    if pages == []:
+        return pages
+    elif len(pages) == 1:
+        return [str(pages[0])]
+    else:
+        start = pages[0]
+        end = pages[0]
+        res = []
+        for i in range(1, len(pages)):
+            if pages[i - 1] + 1 == pages[i]:
+                end = pages[i]
+            else:
+                if start == end:
+                    res.append(str(start))
+                else:
+                    res.append(str(start) + "-" + str(end))
+                start = end = pages[i]
+
+        if start == end:
+            res.append(str(start))
+        else:
+            res.append(str(start) + "-" + str(end))
+
+        return res
 
 
 def main():
