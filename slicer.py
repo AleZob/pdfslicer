@@ -51,6 +51,9 @@ def arg_parse():
 
 
 def zathura_out_parse(stdin_zathura):
+    if stdin_zathura == "":
+        print("No input, abort")
+        exit()
     data = stdin_zathura.strip().split("\n")
     data = [int(page) for page in data]
 
