@@ -76,7 +76,6 @@ def zathura_out_parse(stdin_zathura):
 
 # 1,2,3,5,6,10 -> "1-3","5-6","10"
 def compress_pages(pages: list[int]) -> list[str]:
-    print(pages)
     if pages == []:
         return pages
     elif len(pages) == 1:
