@@ -30,13 +30,13 @@ def arg_parse():
         description="Runs zathura and keeps the marked pages",
         epilog="I am not sorry for writing this",
     )
-    parser.add_argument("file_in")
-    parser.add_argument("file_out")
+    parser.add_argument("file_in", type=Path)
+    parser.add_argument("file_out", type=Path)
 
     args = parser.parse_args()
 
-    file_in = Path(args.file_in)
-    file_out = Path(args.file_out)
+    file_in = args.file_in
+    file_out = args.file_out
     if file_in.exists():
         pass
     else:
